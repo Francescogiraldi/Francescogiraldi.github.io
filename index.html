@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Francesco Giraldi :: Data & AI Portfolio</title>
+    <style>
+        body {
+            background-color: #0000AA;
+            color: #FFFFFF;
+            font-family: 'Courier New', monospace;
+            line-height: 1.4;
+            margin: 0;
+            padding: 20px;
+            cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAzElEQVRYR+2X0Q6AIAhF5f8/2jYXZkwEjNSVvVUjDpcrGgT7FUkI2D9xRfQETwNIiWO85wfINfQUEyxBG2ArsLwC0jioGt5zFcwFQOYBFi+6QP4AAJvwj6GFkTtA9d1VXWY1H2D+6Rn9OFxDxwBESSS4QmwB8AAAAASUVORK5CYII='), auto;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 4px solid #FFFFFF;
+            padding: 20px;
+            background-color: #000033;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1, h2, h3 {
+            color: #FF6600;
+            text-transform: uppercase;
+        }
+        
+        h1 {
+            font-size: 24px;
+            border-bottom: 2px dashed #FF6600;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        
+        h2 {
+            font-size: 18px;
+            margin-top: 30px;
+            border-left: 4px solid #FF6600;
+            padding-left: 10px;
+        }
+        
+        a {
+            color: #66FF66;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            color: #FFFFFF;
+            background-color: #66FF66;
+        }
+        
+        .language-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        
+        .language-toggle button {
+            background: none;
+            border: 1px solid #FFFFFF;
+            color: #FFFFFF;
+            padding: 2px 5px;
+            font-family: 'Courier New', monospace;
+            cursor: pointer;
+        }
+        
+        .language-toggle button.active {
+            background-color: #FFFFFF;
+            color: #0000AA;
+        }
+        
+        .project {
+            margin-bottom: 30px;
+            border: 1px dashed #FFFFFF;
+            padding: 10px;
+            position: relative;
+        }
+        
+        .project:hover {
+            background-color: rgba(102, 255, 102, 0.1);
+        }
+        
+        .project-icon {
+            font-size: 24px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent,
+                transparent 2px,
+                rgba(255, 255, 255, 0.05) 2px,
+                rgba(255, 255, 255, 0.05) 4px
+            );
+            pointer-events: none;
+            z-index: 9999;
+        }
+        
+        .glitch {
+            position: relative;
+        }
+        
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+        
+        .glitch::before {
+            color: #FF00FF;
+            z-index: -1;
+            animation: glitch-effect 3s infinite;
+        }
+        
+        .glitch::after {
+            color: #00FFFF;
+            z-index: -2;
+            animation: glitch-effect 2s infinite reverse;
+        }
+        
+        @keyframes glitch-effect {
+            0% { transform: translate(0); }
+            20% { transform: translate(-3px, 3px); }
+            40% { transform: translate(-3px, -3px); }
+            60% { transform: translate(3px, 3px); }
+            80% { transform: translate(3px, -3px); }
+            100% { transform: translate(0); }
+        }
+        
+        .terminal {
+            background-color: #000033;
+            border: 2px solid #FFFFFF;
+            padding: 10px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            position: relative;
+        }
+        
+        .terminal::before {
+            content: ">";
+            position: absolute;
+            left: 5px;
+            top: 10px;
+            color: #66FF66;
+        }
+        
+        .terminal p {
+            margin: 0;
+            padding-left: 15px;
+        }
+        
+        .blink {
+            animation: blink 1s step-end infinite;
+        }
+        
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        .pixel-art {
+            image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
+        }
+        
+        .progress-bar {
+            height: 20px;
+            background-color: #000033;
+            border: 1px solid #FFFFFF;
+            margin: 10px 0;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: #66FF66;
+            width: 0;
+            transition: width 2s;
+        }
+        
+        .progress-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            line-height: 20px;
+            color: #000033;
+            font-weight: bold;
+        }
+        
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .skill-item {
+            border: 1px solid #FFFFFF;
+            padding: 5px;
+            text-align: center;
+        }
+        
+        .skill-item:hover {
+            background-color: rgba(102, 255, 102, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="scanlines"></div>
+    
+    <div class="container">
+        <div class="language-toggle">
+            <button id="en-btn" class="active">EN</button>
+            <button id="fr-btn">FR</button>
+        </div>
+        
+        <div id="en-content">
+            <h1 class="glitch" data-text="Francesco Giraldi">Francesco Giraldi <span class="blink">_</span></h1>
+            <h2>Data & AI Portfolio</h2>
+            
+            <div class="terminal">
+                <p>LOADING PERSONAL PROFILE...</p>
+                <p>READY.</p>
+            </div>
+            
+            <h2>About Me</h2>
+            <p>I specialize in building intelligent systems that make data useful and actionable for real people. With a background in marketing and business, I transitioned into tech to bridge the gap between insights and execution.</p>
+            
+            <div class="skill-grid">
+                <div class="skill-item">Python</div>
+                <div class="skill-item">LLMs</div>
+                <div class="skill-item">RAG</div>
+                <div class="skill-item">Pandas</div>
+                <div class="skill-item">PyTorch</div>
+                <div class="skill-item">SQL</div>
+                <div class="skill-item">LangChain</div>
+                <div class="skill-item">HuggingFace</div>
+                <div class="skill-item">AWS</div>
+            </div>
+            
+            <h2>Projects</h2>
+            
+            <div class="project">
+                <h3><span class="project-icon">🎮</span> Ikigai AI Application</h3>
+                <p>A personalized AI agent that guides users based on their responses to Ikigai-based exercises. It uses a vector database and Retrieval-Augmented Generation to deliver motivational insights and reflections in natural language.</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%;"></div>
+                    <div class="progress-text">90% COMPLETE</div>
+                </div>
+            </div>
+            
+            <div class="project">
+                <h3><span class="project-icon">🚘</span> Michelin AI Tire Assistant</h3>
+                <p>A chatbot powered by LLMs that recommends the best Michelin tires based on driving style, region, and weather. Built using LangChain and deployed in a responsive web interface.</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%;"></div>
+                    <div class="progress-text">100% COMPLETE</div>
+                </div>
+            </div>
+            
+            <div class="project">
+                <h3><span class="project-icon">📈</span> Voice of Customer Insight Agent</h3>
+                <p>An LLM-based analysis tool that extracts actionable insights from open-ended customer feedback. Helps marketing teams identify pain points, activation opportunities, and service gaps across touchpoints.</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%;"></div>
+                    <div class="progress-text">85% COMPLETE</div>
+                </div>
+            </div>
+            
+            <div class="project">
+                <h3><span class="project-icon">🧠</span> AI-Powered Stall Detection in Steam Systems </h3>
+                <p>A an intelligent system that can detect “stall” conditions in real-time data in industrial steam heating systems using only temperature sensor data.</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 75%;"></div>
+                    <div class="progress-text">75% COMPLETE</div>
+                </div>
+            </div>
+            
+            <div class="project">
+                <h3><span class="project-icon">🗂️</span> RAG-based Knowledge Assistant</h3>
+                <p>A conversational agent using Mistral 7B + FAISS to answer questions from a custom knowledge base. Designed for internal use in corporate training and onboarding.</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 95%;"></div>
+                    <div class="progress-text">95% COMPLETE</div>
+                </div>
+            </div>
+            
+            <p>👉 Full list on <a href="https://github.com/francescogiraldi" target="_blank">github.com/francescogiraldi</a></p>
+            
+            <h2>Education & Certifications</h2>
+            <p>I'm currently completing the RNCP35288 diploma in Data Science at Jedha (Paris), covering:</p>
+            <ul>
+                <li>Data Manipulation with Python, Pandas, SQL</li>
+                <li>Machine Learning with Scikit-learn</li>
+                <li>Deep Learning with PyTorch</li>
+                <li>LLMs & RAG with Hugging Face, LangChain</li>
+                <li>Data Infrastructure: Spark, Snowflake, AWS</li>
+            </ul>
+            
+            <div class="terminal">
+                <p>CONTACT:</p>
+                <p>EMAIL: <a href="mailto:your.email@example.com">francesco.giraldi@gmail.com</a></p>
+                <p>LINKEDIN: <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
+            </div>
+        </div>
+        
+        <div id="fr-content" style="display: none;">
+            <h1 class="glitch" data-text="Francesco Giraldi">Francesco Giraldi <span class="blink">_</span></h1>
+            <h2>Portfolio IA & Données</h2>
+            
+            <div class="terminal">
+                <p>CHARGEMENT DU PROFIL...</p>
+                <p>PRÊT.</p>
+            </div>
+            
+            <h2>À propos de moi</h2>
+            <p>Je conçois des agents intelligents et des applications interactives qui transforment les données en outils utiles. Issu du marketing B2B, j'ai pivoté vers l'IA pour rapprocher les insights des décisions.</p>
+            
+            <div class="skill-grid">
+                <div class="skill-item">Python</div>
+                <div class="skill-item">LLMs</div>
+                <div class="skill-item">RAG</div>
+                <div class="skill-item">Pandas</div>
+                <div class="skill-item">PyTorch</div>
+                <div class="skill-item">SQL</div>
+                <div class="skill-item">LangChain</div>
+                <div class="skill-item">HuggingFace</div>
+                <div class="skill-item">AWS</div>
+            </div>
+            
+            <h2>Projets</h2>
+            
+            <div class="project">
+                <h3><span class="project-icon">🧠</span> Coach Ikigai IA</h3>
+                <p>Agent conversationnel personnalisé qui analyse les réponses des utilisateurs aux exercices de l'Ikigai pour fournir des conseils adaptés. Intègre une base vectorielle + RAG avec langage naturel.</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%;"></div>
+                    <div class="progress-text">90% TERMINÉ</div>
+                </div>
+            </div>
+            
+            <div class="project">
+                <h3><span class="project-icon">🚘</span> Assistant Pneus Michelin IA</h3>
+                <p>Chatbot intelligent qui recommande les pneus Michelin selon le style de conduite, la météo et la région. Construit avec LangChain + interface web réactive.</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%;"></div>
+                    <div class="progress-text">100% TERMINÉ</div>
+                </div>
+            </div>
+            
+            <div class="project">
+                <h3><span class="project-icon">📈</span> Agent Insight Voix du Client</h3>
+                <p>Analyse automatique des feedbacks clients (libres) avec des LLMs pour détecter des opportunités d'amélioration de l'expérience et de l'activation.</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%;"></div>
+                    <div class="progress-text">85% TERMINÉ</div>
+                </div>
+            </div>
+            
+            <div class="project">
+                <h3><span class="project-icon">🎮</span> Application Jeu Michelin (avec IA)</h3>
+                <p>Jeu type Pac-Man dans un univers Michelin, enrichi par un système IA qui ajuste les défis et propose des quiz en temps réel.</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 75%;"></div>
+                    <div class="progress-text">75% TERMINÉ</div>
+                </div>
+            </div>
+            
+            <div class="project">
+                <h3><span class="project-icon">🗂️</span> Assistant IA basé sur le RAG</h3>
+                <p>Agent intelligent entraîné à répondre aux questions à partir d'une base documentaire interne. Utilise Mistral 7B + FAISS + FastAPI.</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 95%;"></div>
+                    <div class="progress-text">95% TERMINÉ</div>
+                </div>
+            </div>
+            
+            <p>👉 Tous les projets sur <a href="https://github.com/francescogiraldi" target="_blank">github.com/francescogiraldi</a></p>
+            
+            <h2>Formation & certifications</h2>
+            <p>Je suis actuellement en formation pour le diplôme RNCP35288 (niveau Bac+4) à Jedha Paris :</p>
+            <ul>
+                <li>Manipulation de données (Python, Pandas, SQL)</li>
+                <li>Modélisation avec Scikit-learn</li>
+                <li>Deep Learning avec PyTorch</li>
+                <li>LLMs & RAG (Hugging Face, LangChain)</li>
+                <li>Infrastructure Cloud (Spark, Snowflake, AWS)</li>
+            </ul>
+            
+            <div class="terminal">
+                <p>CONTACT:</p>
+                <p>EMAIL: <a href="mailto:francesco.giraldi@gmail.com">francesco.giraldi@gmail.com</a></p>
+                <p>LINKEDIN: <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Language toggle
+        document.getElementById('en-btn').addEventListener('click', function() {
+            document.getElementById('en-content').style.display = 'block';
+            document.getElementById('fr-content').style.display = 'none';
+            this.classList.add('active');
+            document.getElementById('fr-btn').classList.remove('active');
+        });
+        
+        document.getElementById('fr-btn').addEventListener('click', function() {
+            document.getElementById('en-content').style.display = 'none';
+            document.getElementById('fr-content').style.display = 'block';
+            this.classList.add('active');
+            document.getElementById('en-btn').classList.remove('active');
+        });
+        
+        // Terminal typing effect
+        const terminals = document.querySelectorAll('.terminal p');
+        terminals.forEach(terminal => {
+            const text = terminal.textContent;
+            terminal.textContent = '';
+            let i = 0;
+            const typing = setInterval(() => {
+                if (i < text.length) {
+                    terminal.textContent += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typing);
+                }
+            }, 50);
+        });
+        
+        // Progress bar animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const progressBars = document.querySelectorAll('.progress-fill');
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 500);
+            });
+        });
+        
+        // Glitch effect on hover
+        const glitchElements = document.querySelectorAll('.glitch');
+        glitchElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                element.style.animation = 'glitch-effect 0.5s infinite';
+            });
+            element.addEventListener('mouseleave', () => {
+                element.style.animation = '';
+            });
+        });
+        
+        // Retro sound effects
+        document.addEventListener('click', () => {
+            const sounds = [
+                'https://assets.mixkit.co/sfx/preview/mixkit-retro-arcade-click-218.mp3',
+                'https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.mp3',
+                'https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3'
+            ];
+            const sound = new Audio(sounds[Math.floor(Math.random() * sounds.length)]);
+            sound.volume = 0.2;
+            sound.play();
+        });
+    </script>
+</body>
+</html>
