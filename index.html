@@ -1,96 +1,368 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Francesco Giraldi :: Data & AI Portfolio</title>
+    <title>Francesco Giraldi :: Portfolio IA</title>
     <style>
+        /* Pastel color palette */
+        :root {
+            --shodo-black: #2d3748;
+            --enji-red: #f687b3;
+            --sumi: #4a5568;
+            --washi: #f7fafc;
+            --sakura: #fed7e2;
+            --gold: #f6e05e;
+            --tech-blue: #90cdf4;
+            --neon-green: #9ae6b4;
+        }
+
         body {
-            background-color: #0000AA;
-            color: #FFFFFF;
-            font-family: 'Courier New', monospace;
-            line-height: 1.4;
+            background-color: var(--shodo-black);
+            color: var(--washi);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
             margin: 0;
-            padding: 20px;
-            cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAzElEQVRYR+2X0Q6AIAhF5f8/2jYXZkwEjNSVvVUjDpcrGgT7FUkI2D9xRfQETwNIiWO85wfINfQUEyxBG2ArsLwC0jioGt5zFcwFQOYBFi+6QP4AAJvwj6GFkTtA9d1VXWY1H2D+6Rn9OFxDxwBESSS4QmwB8AAAAASUVORK5CYII='), auto;
+            padding: 0;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(246, 224, 94, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(144, 205, 244, 0.05) 0%, transparent 20%);
         }
         
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            border: 4px solid #FFFFFF;
-            padding: 20px;
-            background-color: #000033;
+            max-width: 900px;
+            margin: 40px auto;
+            border: 4px solid var(--enji-red);
+            padding: 30px;
+            background-color: rgba(45, 55, 72, 0.9);
             position: relative;
             overflow: hidden;
+            box-shadow: 0 0 30px rgba(246, 135, 179, 0.3);
+            backdrop-filter: blur(5px);
         }
-        
+
         h1, h2, h3 {
-            color: #FF6600;
+            color: var(--neon-green);
             text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            text-shadow: 0 0 10px rgba(154, 230, 180, 0.3);
         }
         
         h1 {
-            font-size: 24px;
-            border-bottom: 2px dashed #FF6600;
-            padding-bottom: 10px;
+            font-size: 2.5rem;
+            border-bottom: 2px solid var(--enji-red);
+            padding-bottom: 15px;
             margin-top: 0;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--enji-red), var(--gold), var(--enji-red));
         }
         
         h2 {
-            font-size: 18px;
-            margin-top: 30px;
-            border-left: 4px solid #FF6600;
-            padding-left: 10px;
+            font-size: 1.8rem;
+            margin-top: 40px;
+            border-left: 4px solid var(--enji-red);
+            padding-left: 15px;
+            font-weight: 500;
+        }
+
+        h2::before {
+            content: "◆";
+            color: var(--enji-red);
+            margin-right: 10px;
         }
         
         a {
-            color: #66FF66;
+            color: var(--neon-green);
             text-decoration: none;
-        }
-        
-        a:hover {
-            color: #FFFFFF;
-            background-color: #66FF66;
-        }
-        
-        .language-toggle {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-        
-        .language-toggle button {
-            background: none;
-            border: 1px solid #FFFFFF;
-            color: #FFFFFF;
-            padding: 2px 5px;
-            font-family: 'Courier New', monospace;
-            cursor: pointer;
-        }
-        
-        .language-toggle button.active {
-            background-color: #FFFFFF;
-            color: #0000AA;
-        }
-        
-        .project {
-            margin-bottom: 30px;
-            border: 1px dashed #FFFFFF;
-            padding: 10px;
+            transition: all 0.3s;
             position: relative;
         }
         
+        a:hover {
+            color: var(--washi);
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        a::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--neon-green);
+            transition: width 0.3s;
+        }
+
+        a:hover::after {
+            width: 100%;
+        }
+        
+        .project {
+            margin-bottom: 40px;
+            border: 1px solid rgba(246, 135, 179, 0.3);
+            padding: 20px;
+            position: relative;
+            transition: all 0.5s;
+            background: rgba(45, 55, 72, 0.5);
+            overflow: hidden;
+        }
+
+        .project::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(246, 135, 179, 0.1), rgba(45, 55, 72, 0.1));
+            z-index: -1;
+        }
+        
         .project:hover {
-            background-color: rgba(102, 255, 102, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(246, 135, 179, 0.2);
+            border-color: var(--enji-red);
         }
         
         .project-icon {
-            font-size: 24px;
-            margin-right: 10px;
+            font-size: 28px;
+            margin-right: 15px;
             vertical-align: middle;
+            filter: drop-shadow(0 0 5px var(--neon-green));
         }
         
+        .terminal {
+            background-color: rgba(45, 55, 72, 0.7);
+            border: 2px solid var(--enji-red);
+            padding: 20px;
+            margin: 30px 0;
+            font-family: 'Courier New', monospace;
+            position: relative;
+            box-shadow: inset 0 0 20px rgba(246, 135, 179, 0.2);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .terminal::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent,
+                transparent 50%,
+                rgba(246, 135, 179, 0.1) 50%,
+                rgba(246, 135, 179, 0.1)
+            );
+            background-size: 100% 4px;
+            z-index: 0;
+        }
+        
+        .terminal::after {
+            content: ">";
+            position: absolute;
+            left: 10px;
+            top: 20px;
+            color: var(--neon-green);
+            font-weight: bold;
+            z-index: 1;
+        }
+        
+        .terminal p {
+            margin: 0;
+            padding-left: 25px;
+            position: relative;
+            z-index: 2;
+            line-height: 1.8;
+        }
+        
+        .blink {
+            animation: blink 1s step-end infinite;
+        }
+        
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        .progress-bar {
+            height: 25px;
+            background-color: rgba(45, 55, 72, 0.7);
+            border: 1px solid var(--enji-red);
+            margin: 15px 0;
+            position: relative;
+            border-radius: 3px;
+            overflow: hidden;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--enji-red), var(--gold));
+            width: 0;
+            transition: width 1.5s ease-out;
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0.3) 0%,
+                rgba(255, 255, 255, 0) 50%,
+                rgba(255, 255, 255, 0.3) 100%
+            );
+            animation: shine 2s infinite;
+        }
+        
+        .progress-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            line-height: 25px;
+            color: var(--washi);
+            font-weight: bold;
+            text-shadow: 0 0 5px var(--shodo-black);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .skill-item {
+            border: 1px solid var(--enji-red);
+            padding: 10px;
+            text-align: center;
+            transition: all 0.3s;
+            background: rgba(45, 55, 72, 0.7);
+            position: relative;
+            overflow: hidden;
+            border-radius: 3px;
+        }
+
+        .skill-item::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                rgba(246, 135, 179, 0.1) 0%,
+                rgba(45, 55, 72, 0) 50%,
+                rgba(246, 135, 179, 0.1) 100%
+            );
+            z-index: -1;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(246, 135, 179, 0.3);
+            background: rgba(246, 135, 179, 0.2);
+            color: var(--neon-green);
+        }
+
+        .wave-divider {
+            height: 30px;
+            width: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%23f687b3"></path><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%23f687b3"></path><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23f687b3"></path></svg>');
+            background-size: cover;
+            margin: 40px 0;
+            opacity: 0.7;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+                padding-top: 30px;
+            }
+            
+            .skill-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+        }
+
+        /* Floating elements */
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Cherry blossom animation */
+        .cherry-blossom {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23fed7e2" d="M50,10 Q55,0 60,10 T70,20 Q80,25 70,30 T60,40 Q55,50 50,40 T40,30 Q30,25 40,20 T50,10 Z" opacity="0.7"/></svg>');
+            background-size: contain;
+            pointer-events: none;
+            z-index: 9998;
+            animation: falling linear infinite;
+        }
+
+        @keyframes falling {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Scanlines effect */
         .scanlines {
             position: fixed;
             top: 0;
@@ -107,347 +379,136 @@
             pointer-events: none;
             z-index: 9999;
         }
-        
-        .glitch {
-            position: relative;
-        }
-        
-        .glitch::before, .glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.8;
-        }
-        
-        .glitch::before {
-            color: #FF00FF;
-            z-index: -1;
-            animation: glitch-effect 3s infinite;
-        }
-        
-        .glitch::after {
-            color: #00FFFF;
-            z-index: -2;
-            animation: glitch-effect 2s infinite reverse;
-        }
-        
-        @keyframes glitch-effect {
-            0% { transform: translate(0); }
-            20% { transform: translate(-3px, 3px); }
-            40% { transform: translate(-3px, -3px); }
-            60% { transform: translate(3px, 3px); }
-            80% { transform: translate(3px, -3px); }
-            100% { transform: translate(0); }
-        }
-        
-        .terminal {
-            background-color: #000033;
-            border: 2px solid #FFFFFF;
-            padding: 10px;
-            margin: 20px 0;
-            font-family: 'Courier New', monospace;
-            position: relative;
-        }
-        
-        .terminal::before {
-            content: ">";
-            position: absolute;
-            left: 5px;
-            top: 10px;
-            color: #66FF66;
-        }
-        
-        .terminal p {
-            margin: 0;
-            padding-left: 15px;
-        }
-        
-        .blink {
-            animation: blink 1s step-end infinite;
-        }
-        
-        @keyframes blink {
-            from, to { opacity: 1; }
-            50% { opacity: 0; }
-        }
-        
-        .pixel-art {
-            image-rendering: pixelated;
-            image-rendering: -moz-crisp-edges;
-            image-rendering: crisp-edges;
-        }
-        
-        .progress-bar {
-            height: 20px;
-            background-color: #000033;
-            border: 1px solid #FFFFFF;
-            margin: 10px 0;
-            position: relative;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background-color: #66FF66;
-            width: 0;
-            transition: width 2s;
-        }
-        
-        .progress-text {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            line-height: 20px;
-            color: #000033;
-            font-weight: bold;
-        }
-        
-        .skill-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin: 20px 0;
-        }
-        
-        .skill-item {
-            border: 1px solid #FFFFFF;
-            padding: 5px;
-            text-align: center;
-        }
-        
-        .skill-item:hover {
-            background-color: rgba(102, 255, 102, 0.2);
-        }
     </style>
 </head>
 <body>
     <div class="scanlines"></div>
+    <div id="cherry-blossom-container"></div>
     
     <div class="container">
-        <div class="language-toggle">
-            <button id="en-btn" class="active">EN</button>
-            <button id="fr-btn">FR</button>
+        <h1>Francesco Giraldi <span class="blink">_</span></h1>
+        <h2>Portfolio IA & Données</h2>
+        
+        <div class="terminal">
+            <p>CHARGEMENT DU PROFIL...</p>
+            <p>SYSTÈME INITIALISÉ.</p>
+            <p>BIENVENUE.</p>
         </div>
         
-        <div id="en-content">
-            <h1 class="glitch" data-text="Francesco Giraldi">Francesco Giraldi <span class="blink">_</span></h1>
-            <h2>Data & AI Portfolio</h2>
-            
-            <div class="terminal">
-                <p>LOADING PERSONAL PROFILE...</p>
-                <p>READY.</p>
-            </div>
-            
-            <h2>About Me</h2>
-            <p>I specialize in building intelligent systems that make data useful and actionable for real people. With a background in marketing and business, I transitioned into tech to bridge the gap between insights and execution.</p>
-            
-            <div class="skill-grid">
-                <div class="skill-item">Python</div>
-                <div class="skill-item">LLMs</div>
-                <div class="skill-item">RAG</div>
-                <div class="skill-item">Pandas</div>
-                <div class="skill-item">PyTorch</div>
-                <div class="skill-item">SQL</div>
-                <div class="skill-item">LangChain</div>
-                <div class="skill-item">HuggingFace</div>
-                <div class="skill-item">AWS</div>
-            </div>
-            
-            <h2>Projects</h2>
-            
-            <div class="project">
-                <h3><span class="project-icon">🎮</span> Ikigai AI Application</h3>
-                <p>A personalized AI agent that guides users based on their responses to Ikigai-based exercises. It uses a vector database and Retrieval-Augmented Generation to deliver motivational insights and reflections in natural language.</p>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 90%;"></div>
-                    <div class="progress-text">90% COMPLETE</div>
-                </div>
-            </div>
-            
-            <div class="project">
-                <h3><span class="project-icon">🚘</span> Michelin AI Tire Assistant</h3>
-                <p>A chatbot powered by LLMs that recommends the best Michelin tires based on driving style, region, and weather. Built using LangChain and deployed in a responsive web interface.</p>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 100%;"></div>
-                    <div class="progress-text">100% COMPLETE</div>
-                </div>
-            </div>
-            
-            <div class="project">
-                <h3><span class="project-icon">📈</span> Voice of Customer Insight Agent</h3>
-                <p>An LLM-based analysis tool that extracts actionable insights from open-ended customer feedback. Helps marketing teams identify pain points, activation opportunities, and service gaps across touchpoints.</p>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 85%;"></div>
-                    <div class="progress-text">85% COMPLETE</div>
-                </div>
-            </div>
-            
-            <div class="project">
-                <h3><span class="project-icon">🧠</span> AI-Powered Stall Detection in Steam Systems </h3>
-                <p>A an intelligent system that can detect “stall” conditions in real-time data in industrial steam heating systems using only temperature sensor data.</p>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 75%;"></div>
-                    <div class="progress-text">75% COMPLETE</div>
-                </div>
-            </div>
-            
-            <div class="project">
-                <h3><span class="project-icon">🗂️</span> RAG-based Knowledge Assistant</h3>
-                <p>A conversational agent using Mistral 7B + FAISS to answer questions from a custom knowledge base. Designed for internal use in corporate training and onboarding.</p>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 95%;"></div>
-                    <div class="progress-text">95% COMPLETE</div>
-                </div>
-            </div>
-            
-            <p>👉 Full list on <a href="https://github.com/francescogiraldi" target="_blank">github.com/francescogiraldi</a></p>
-            
-            <h2>Education & Certifications</h2>
-            <p>I'm currently completing the RNCP35288 diploma in Data Science at Jedha (Paris), covering:</p>
-            <ul>
-                <li>Data Manipulation with Python, Pandas, SQL</li>
-                <li>Machine Learning with Scikit-learn</li>
-                <li>Deep Learning with PyTorch</li>
-                <li>LLMs & RAG with Hugging Face, LangChain</li>
-                <li>Data Infrastructure: Spark, Snowflake, AWS</li>
-            </ul>
-            
-            <div class="terminal">
-                <p>CONTACT:</p>
-                <p>EMAIL: <a href="mailto:your.email@example.com">francesco.giraldi@gmail.com</a></p>
-                <p>LINKEDIN: <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
+        <div class="wave-divider"></div>
+        
+        <h2>À propos de moi</h2>
+        <p>Je conçois des agents intelligents et des applications interactives qui transforment les données en outils utiles. Issu du business development B2B, j'ai pivoté vers l'IA et la Data Science pour rapprocher les insights des décisions. Mon travail s'inspire de l'esthétique japonaise minimaliste combinée à la technologie de pointe.</p>
+        
+        <div class="skill-grid">
+            <div class="skill-item">Python</div>
+            <div class="skill-item">LLMs</div>
+            <div class="skill-item">RAG</div>
+            <div class="skill-item">Pandas</div>
+            <div class="skill-item">PyTorch</div>
+            <div class="skill-item">SQL</div>
+            <div class="skill-item">LangChain</div>
+            <div class="skill-item">HuggingFace</div>
+            <div class="skill-item">AWS</div>
+            <div class="skill-item">Vector DB</div>
+            <div class="skill-item">FastAPI</div>
+            <div class="skill-item">React</div>
+        </div>
+        
+        <div class="wave-divider"></div>
+        
+        <h2>Projets 2025</h2>
+        
+        <div class="project">
+            <h3><span class="project-icon">🧠</span> Coach Ikigai IA</h3>
+            <p>Application web AI : elle interprète les réponses de l’utilisateur aux exercices d’Ikigai et fournit des recommandations sur mesure, grâce à un LLM intégré à une recherche RAG sur base vectorielle et à une interface React.</p>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 100%;"></div>
+                <div class="progress-text">100% TERMINÉ</div>
             </div>
         </div>
         
-        <div id="fr-content" style="display: none;">
-            <h1 class="glitch" data-text="Francesco Giraldi">Francesco Giraldi <span class="blink">_</span></h1>
-            <h2>Portfolio IA & Données</h2>
-            
-            <div class="terminal">
-                <p>CHARGEMENT DU PROFIL...</p>
-                <p>PRÊT.</p>
+        <div class="project">
+            <h3><span class="project-icon">🚘</span> Assistant Pneus Michelin IA</h3>
+            <p>Chatbot intelligent : il recommande les pneus Michelin les plus adaptés à chaque conducteur en tenant compte de son style de conduite, des conditions météo et de la région, le tout développé avec LangChain et une interface React.</p>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 100%;"></div>
+                <div class="progress-text">100% TERMINÉ</div>
             </div>
-            
-            <h2>À propos de moi</h2>
-            <p>Je conçois des agents intelligents et des applications interactives qui transforment les données en outils utiles. Issu du marketing B2B, j'ai pivoté vers l'IA pour rapprocher les insights des décisions.</p>
-            
-            <div class="skill-grid">
-                <div class="skill-item">Python</div>
-                <div class="skill-item">LLMs</div>
-                <div class="skill-item">RAG</div>
-                <div class="skill-item">Pandas</div>
-                <div class="skill-item">PyTorch</div>
-                <div class="skill-item">SQL</div>
-                <div class="skill-item">LangChain</div>
-                <div class="skill-item">HuggingFace</div>
-                <div class="skill-item">AWS</div>
+        </div>
+        
+        <div class="project">
+            <h3><span class="project-icon">📈</span> Agent Insight Voix du Client</h3>
+            <p>Solution d’analyse automatique des verbatims clients : un LLM passe en revue les commentaires pour dégager des pistes d’amélioration de l’expérience, tandis que spaCy et un algorithme de clustering font ressortir les cinq irritants principaux.</p>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 100%;"></div>
+                <div class="progress-text">100% TERMINÉ</div>
             </div>
-            
-            <h2>Projets</h2>
-            
-            <div class="project">
-                <h3><span class="project-icon">🧠</span> Coach Ikigai IA</h3>
-                <p>Agent conversationnel personnalisé qui analyse les réponses des utilisateurs aux exercices de l'Ikigai pour fournir des conseils adaptés. Intègre une base vectorielle + RAG avec langage naturel.</p>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 90%;"></div>
-                    <div class="progress-text">90% TERMINÉ</div>
-                </div>
+        </div>
+                
+        <div class="project">
+            <h3><span class="project-icon">🗂️</span> AI-Powered Stall Detection</h3>
+                <p>Système intelligent de détection en temps réel des situations de « stall » sur les réseaux de chauffage vapeur industriels : il se base uniquement sur les données de température des capteurs IoT et atteint 94 % d’AUC avec un modèle XGBoost sur séries temporelles.</p>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 100%;"></div>
+                <div class="progress-text">100% TERMINÉ</div>
             </div>
-            
-            <div class="project">
-                <h3><span class="project-icon">🚘</span> Assistant Pneus Michelin IA</h3>
-                <p>Chatbot intelligent qui recommande les pneus Michelin selon le style de conduite, la météo et la région. Construit avec LangChain + interface web réactive.</p>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 100%;"></div>
-                    <div class="progress-text">100% TERMINÉ</div>
-                </div>
-            </div>
-            
-            <div class="project">
-                <h3><span class="project-icon">📈</span> Agent Insight Voix du Client</h3>
-                <p>Analyse automatique des feedbacks clients (libres) avec des LLMs pour détecter des opportunités d'amélioration de l'expérience et de l'activation.</p>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 85%;"></div>
-                    <div class="progress-text">85% TERMINÉ</div>
-                </div>
-            </div>
-            
-            <div class="project">
-                <h3><span class="project-icon">🎮</span> Application Jeu Michelin (avec IA)</h3>
-                <p>Jeu type Pac-Man dans un univers Michelin, enrichi par un système IA qui ajuste les défis et propose des quiz en temps réel.</p>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 75%;"></div>
-                    <div class="progress-text">75% TERMINÉ</div>
-                </div>
-            </div>
-            
-            <div class="project">
-                <h3><span class="project-icon">🗂️</span> Assistant IA basé sur le RAG</h3>
-                <p>Agent intelligent entraîné à répondre aux questions à partir d'une base documentaire interne. Utilise Mistral 7B + FAISS + FastAPI.</p>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 95%;"></div>
-                    <div class="progress-text">95% TERMINÉ</div>
-                </div>
-            </div>
-            
-            <p>👉 Tous les projets sur <a href="https://github.com/francescogiraldi" target="_blank">github.com/francescogiraldi</a></p>
-            
-            <h2>Formation & certifications</h2>
-            <p>Je suis actuellement en formation pour le diplôme RNCP35288 (niveau Bac+4) à Jedha Paris :</p>
-            <ul>
-                <li>Manipulation de données (Python, Pandas, SQL)</li>
-                <li>Modélisation avec Scikit-learn</li>
-                <li>Deep Learning avec PyTorch</li>
-                <li>LLMs & RAG (Hugging Face, LangChain)</li>
-                <li>Infrastructure Cloud (Spark, Snowflake, AWS)</li>
-            </ul>
-            
-            <div class="terminal">
-                <p>CONTACT:</p>
-                <p>EMAIL: <a href="mailto:francesco.giraldi@gmail.com">francesco.giraldi@gmail.com</a></p>
-                <p>LINKEDIN: <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
-            </div>
+        </div>
+        
+        <p>👉 Tous les projets sur <a href="https://github.com/francescogiraldi" target="_blank">github.com/francescogiraldi</a></p>
+        
+        <div class="wave-divider"></div>
+        
+        <h2>Formation & certifications</h2>
+        <p>Je suis actuellement en formation pour le diplôme RNCP (niveau Bac+5) à Mines Paris – PSL, Grande école d'ingénieurs
+ :</p>
+        <ul>
+            <li>Manipulation de données (Python, Pandas, SQL)</li>
+            <li>Modélisation avec Scikit-learn</li>
+            <li>Deep Learning avec PyTorch</li>
+            <li>LLMs & RAG (Hugging Face, LangChain)</li>
+            <li>Infrastructure Cloud (Spark, Snowflake, AWS)</li>
+        </ul>
+        
+        <div class="terminal">
+            <p>CONTACT:</p>
+            <p>EMAIL: <a href="mailto:francesco.giraldi@gmail.com">francesco.giraldi@gmail.com</a></p>
+            <p>LINKEDIN: <a href="https://linkedin.com/in/giraldifrancesco/" target="_blank">linkedin.com/in/giraldifrancesco</a></p>
+            <p>GITHUB: <a href="https://github.com/francescogiraldi" target="_blank">github.com/francescogiraldi</a></p>
         </div>
     </div>
-    
+
     <script>
-        // Language toggle
-        document.getElementById('en-btn').addEventListener('click', function() {
-            document.getElementById('en-content').style.display = 'block';
-            document.getElementById('fr-content').style.display = 'none';
-            this.classList.add('active');
-            document.getElementById('fr-btn').classList.remove('active');
-        });
-        
-        document.getElementById('fr-btn').addEventListener('click', function() {
-            document.getElementById('en-content').style.display = 'none';
-            document.getElementById('fr-content').style.display = 'block';
-            this.classList.add('active');
-            document.getElementById('en-btn').classList.remove('active');
-        });
-        
-        // Terminal typing effect
-        const terminals = document.querySelectorAll('.terminal p');
-        terminals.forEach(terminal => {
-            const text = terminal.textContent;
-            terminal.textContent = '';
-            let i = 0;
-            const typing = setInterval(() => {
-                if (i < text.length) {
-                    terminal.textContent += text.charAt(i);
-                    i++;
-                } else {
-                    clearInterval(typing);
-                }
-            }, 50);
-        });
-        
-        // Progress bar animation
+        // Create cherry blossoms
+        function createCherryBlossoms() {
+            const container = document.getElementById('cherry-blossom-container');
+            const numBlossoms = 15;
+            
+            for (let i = 0; i < numBlossoms; i++) {
+                const blossom = document.createElement('div');
+                blossom.className = 'cherry-blossom';
+                
+                // Random properties
+                const size = Math.random() * 25 + 20;
+                const left = Math.random() * 100;
+                const animationDuration = Math.random() * 10 + 10;
+                const delay = Math.random() * 15;
+                
+                blossom.style.width = `${size}px`;
+                blossom.style.height = `${size}px`;
+                blossom.style.left = `${left}vw`;
+                blossom.style.animationDuration = `${animationDuration}s`;
+                blossom.style.animationDelay = `${delay}s`;
+                blossom.style.opacity = Math.random() * 0.5 + 0.3;
+                
+                container.appendChild(blossom);
+            }
+        }
+
+        // Animate progress bars on load
         document.addEventListener('DOMContentLoaded', () => {
+            createCherryBlossoms();
+            
             const progressBars = document.querySelectorAll('.progress-fill');
             progressBars.forEach(bar => {
                 const width = bar.style.width;
@@ -456,29 +517,6 @@
                     bar.style.width = width;
                 }, 500);
             });
-        });
-        
-        // Glitch effect on hover
-        const glitchElements = document.querySelectorAll('.glitch');
-        glitchElements.forEach(element => {
-            element.addEventListener('mouseenter', () => {
-                element.style.animation = 'glitch-effect 0.5s infinite';
-            });
-            element.addEventListener('mouseleave', () => {
-                element.style.animation = '';
-            });
-        });
-        
-        // Retro sound effects
-        document.addEventListener('click', () => {
-            const sounds = [
-                'https://assets.mixkit.co/sfx/preview/mixkit-retro-arcade-click-218.mp3',
-                'https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.mp3',
-                'https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3'
-            ];
-            const sound = new Audio(sounds[Math.floor(Math.random() * sounds.length)]);
-            sound.volume = 0.2;
-            sound.play();
         });
     </script>
 </body>
